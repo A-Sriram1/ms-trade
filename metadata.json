@@ -1,0 +1,8 @@
+{
+  "name": "TradeMind AI",
+  "description": "AI-powered Indian stock market analytics and options intelligence platform.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
