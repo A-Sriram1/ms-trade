@@ -359,6 +359,21 @@ async function startServer() {
     }
   });
 
+  // Options Strategy Engine endpoint
+  app.get("/api/options-strategy/:symbol", async (req, res) => {
+    try {
+      const symbol = req.params.symbol.toUpperCase();
+      const snapshot = await marketService.stream_market_data();
+      const signal = snapshot.signals.find((s: any) => s.symbol === symbol);
+      if (!signal) {
+        return res.status(404).json({ canGenerate: false, cannotGenerateReason: `No active signal found for ${symbol}. Run the signal engine first.` });
+      }
+      res.json(signal.optionsStrategy || { canGenerate: false, cannotGenerateReason: 'Options strategy not yet computed for this signal.' });
+    } catch (e: any) {
+      res.status(500).json({ canGenerate: false, cannotGenerateReason: e.message });
+    }
+  });
+
   // AI Assistant endpoint
   app.post("/api/chat", async (req, res) => {
      try {

@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Activity, Clock3, RefreshCw, Scale, ShieldAlert, TrendingDown, TrendingUp } from 'lucide-react';
 import type { OptionsAnalytics, OptionsAnalyticsRow } from '../types';
+import { OptionsStrategyPanel } from './OptionsStrategyPanel';
 
 type OptionsSymbol = 'NIFTY' | 'BANKNIFTY';
 
@@ -441,6 +442,11 @@ export function OptionsDashboard() {
                 </tbody>
               </table>
             </div>
+          </div>
+
+          {/* ── AI Options Strategy Engine ──────────────────────────────── */}
+          <div className="rounded-xl border border-[#27272a] bg-[#111114] p-4">
+            <OptionsStrategyPanel />
           </div>
         </>
       ) : null}
